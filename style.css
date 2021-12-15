@@ -1,2 +1,64 @@
-body {
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --green: #00915B;
+    --dark-gray: #646464;
+    --light-gray: #999999;
+    --light-yellow: #FFC000;
+    --dark-yellow: #CB9800;
+    --content-width: 60rem;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body, html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+header {
+    background-color: var(--white);
+}
+
+header .container {
+    width: var(--content-width);
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 30px;
+}
+
+header a {
+    color: var(--green)
+}
+
+main {
+    background-color: var(--light-gray);
+    border-top: 5px solid var(--dark-gray);
+    height: 100%;
+    padding: 30px 0;
+}
+
+article {
+    background-color: var(--white);
+    width: var(--content-width);
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    border-bottom: 5px solid var(--dark-gray);
+}
+
+article h2 {
+    margin: 0;
+    padding: 30px;
+    border-bottom: 5px solid var(--dark-yellow);
+    background-color: var(--light-yellow);
+    color: var(--black);
+    /* width: fit-content; */
+    width: min-content;
+    max-width: max-content;
+    margin-left: -30px;
 }
