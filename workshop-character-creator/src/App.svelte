@@ -1,65 +1,113 @@
 <script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+  import BodyPart from "./BodyPart.svelte";
+
+  let hatColor: string = "pink";
+  let headColor = "red";
+  let bodyColor = "salmon";
+  let legsColor = "green";
 </script>
 
-<main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
+<div class="wrapper">
+  <div class="controls-wrapper">
+    <h1>Skapa din göbbe</h1>
 
-  <Counter />
+    <p>Välj och vraka bland armar, ben och hattar.</p>
 
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
+    <div class="settings">
+      <BodyPart currentColor={hatColor} setColor={(color) => hatColor = color} label={"Hatt"} />
+      <BodyPart currentColor={headColor} setColor={(color) => headColor = color} label={"Huvud"} />
+      <BodyPart currentColor={bodyColor} setColor={(color) => bodyColor = color} label={"Kropp"} />
+      <BodyPart currentColor={legsColor} setColor={(color) => legsColor = color} label={"Ben"} />
+    </div>
+  </div>
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
-</main>
+  <div class="character-wrapper">
+    <div class="character">
+      <div class="body-part" style="background: {hatColor}" />
+      <div class="body-part" style="background: {headColor}" />
+      <div class="body-part" style="background: {bodyColor}" />
+      <div class="body-part" style="background: {legsColor}" />
+    </div>
+  </div>
+</div>
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+
+  .body-part {
+    width: 100%;
+    height: 25%;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4);
+    transition: background 1s ease;
   }
 
-  main {
-    text-align: center;
-    padding: 1em;
+  .body-part:first-of-type {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .body-part:last-of-type {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  :global(body) {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+
+  :global(*) {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .wrapper {
+    max-width: 100rem;
     margin: 0 auto;
+    padding-top: 2000px;
+    padding-bottom: 10000px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  img {
-    height: 16rem;
-    width: 16rem;
+  .controls-wrapper {
+    color: white;
+    padding: 20px;
+    background: steelblue;
+    border-radius: 6px;
+    width: 40rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
+  .settings {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
   }
 
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
+  .character-wrapper {
+    background: rgba(0, 0, 0, 0);
+
+    position: relative;
+    display: flex;
+    align-items: end;
+
+    height: 1000px;
   }
 
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
+  .character {
+    background: rgba(0, 0, 0, 0);
 
-    p {
-      max-width: none;
-    }
+    position: sticky;
+    margin-left: 10rem;
+    bottom: 30vh;
+    width: 300px;
+    height: 600px;
   }
 </style>
