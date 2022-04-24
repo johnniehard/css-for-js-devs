@@ -1,10 +1,6 @@
 <script lang="ts">
   import BodyPart from "./BodyPart.svelte";
-
-  let hatColor: string = "pink";
-  let headColor = "red";
-  let bodyColor = "salmon";
-  let legsColor = "green";
+  import { bodyColor, hatColor, headColor, legsColor } from "./stores";
 </script>
 
 <div class="wrapper">
@@ -14,26 +10,24 @@
     <p>Välj och vraka bland armar, ben och hattar.</p>
 
     <div class="settings">
-      <BodyPart currentColor={hatColor} setColor={(color) => hatColor = color} label={"Hatt"} />
-      <BodyPart currentColor={headColor} setColor={(color) => headColor = color} label={"Huvud"} />
-      <BodyPart currentColor={bodyColor} setColor={(color) => bodyColor = color} label={"Kropp"} />
-      <BodyPart currentColor={legsColor} setColor={(color) => legsColor = color} label={"Ben"} />
+      <BodyPart colorStore={hatColor} label={"Hatt"} />
+      <BodyPart colorStore={headColor} label={"Huvud"} />
+      <BodyPart colorStore={bodyColor} label={"Kropp"} />
+      <BodyPart colorStore={legsColor} label={"Ben"} />
     </div>
   </div>
 
   <div class="character-wrapper">
     <div class="character">
-      <div class="body-part" style="background: {hatColor}" />
-      <div class="body-part" style="background: {headColor}" />
-      <div class="body-part" style="background: {bodyColor}" />
-      <div class="body-part" style="background: {legsColor}" />
+      <div class="body-part" style="background: {$hatColor}" />
+      <div class="body-part" style="background: {$headColor}" />
+      <div class="body-part" style="background: {$bodyColor}" />
+      <div class="body-part" style="background: {$legsColor}" />
     </div>
   </div>
 </div>
 
 <style>
-
-
   .body-part {
     width: 100%;
     height: 25%;
@@ -65,8 +59,8 @@
   .wrapper {
     max-width: 100rem;
     margin: 0 auto;
-    padding-top: 2000px;
-    padding-bottom: 10000px;
+    padding-top: 800px;
+    padding-bottom: 800px;
 
     display: grid;
     grid-template-columns: 1fr 1fr;

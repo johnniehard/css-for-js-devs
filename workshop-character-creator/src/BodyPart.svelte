@@ -1,11 +1,20 @@
 <script lang="ts">
+    import type { Writable } from "svelte/store";
+
     export let label: string;
-    export let currentColor: string;
-    export let setColor: (color: string) => void;
+    export let colorStore: Writable<string>;
 
-    let colors = ["pink", "blue", "green", "tomato", "gold", "salmon", "teal", "lightgreen", "yellow"];
-
-
+    let colors = [
+        "pink",
+        "blue",
+        "green",
+        "tomato",
+        "gold",
+        "salmon",
+        "teal",
+        "lightgreen",
+        "yellow",
+    ];
 </script>
 
 <div class="body-part">
@@ -14,10 +23,10 @@
     <div class="container">
         {#each colors as color}
             <button
-                class:active={currentColor === color}
+                class:active={$colorStore === color}
                 style="background: {color}"
                 type="button"
-                on:click={() => setColor(color)}
+                on:click={() => $colorStore = color}
                 class="option"
             />
         {/each}
@@ -50,9 +59,7 @@
         cursor: pointer;
     }
 
-
     .active {
         border: 2px solid black;
     }
-
 </style>
